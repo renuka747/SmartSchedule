@@ -18,14 +18,13 @@ Design Decisions:
 """
 
 from typing import Dict, Set
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 class TimeSlot(BaseModel):
     day: str          # e.g., "Monday"
     start_time: str   # e.g., "09:00"
 
-    class Config:
-        frozen = True   # hashable, for use in sets/dict keys
+    model_config = ConfigDict(frozen=True)   # hashable, for use in sets/dict keys
 
 FacultyID = str
 RoomID = str
